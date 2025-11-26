@@ -33,14 +33,14 @@ Creates IBM_daily.csv in data/
 
 Make sure you’ve run aws configure and set up your IAM user.
 
-text
-python upload_to_s3.py
+**text
+python upload_to_s3.py**
 Uploads CSV to your S3 bucket in stock_data/ folder.
 
 **AWS Steps**
 Instructions for S3 bucket, IAM, Glue Crawler, Athena setup (see guide above).
 
-Notes
+**Notes**
 Do not upload .env or credentials to GitHub.
 
 AWS resources are described in this README for reference; not hosted in the code.
@@ -48,14 +48,82 @@ AWS resources are described in this README for reference; not hosted in the code
 For more details, see AWS Setup Guide above.
 
 Extra: Example File Descriptions
-main.py
+**main.py**
 
 Downloads raw stock data from API.
 
-convert_to_csv.py
+**convert_to_csv.py**
 
 Transforms API data (JSON) into CSV for data analysis or later processing.
 
-upload_to_s3.py
+**upload_to_s3.py**
 
 Moves processed data to AWS cloud for team access and next steps.
+
+**AWS Integration
+A) AWS Glue ETL**
+**Workflow**
+Upload data to S3:
+s3://kini-stock-etl-bucket/stock_data/IBM_daily.csv
+
+**Create AWS Glue database:**
+kini_data_demo
+
+**Configure AWS Glue crawler:**
+
+Name: stock_data_crawler
+
+**Data source: S3 path: s3://kini-stock-etl-bucket/stock_data/
+
+IAM role: AWSGlueServiceRole-stocketl
+
+Output: Table etl_IBM_daily in kini_data_demo database**
+
+Run crawler, verify schema detection.
+
+Table is now queryable by AWS Data Catalog.
+
+Next Steps
+Build an ETL job in Glue (for cleaning or converting to Parquet).
+
+**B) AWS Athena Query**
+**Workflow**
+Set query results location:
+s3://kini-stock-etl-bucket/athena-results/ (configured in Athena settings)
+
+Run sample SQL in Athena:
+
+**sql**
+SELECT * FROM "kini_data_demo"."etl_IBM_daily" LIMIT 10; (you can do more queries this project was about learning aws)
+Result:
+Successfully returned sample data rows, confirming cloud workflow.
+
+**Benefits**
+Serverless SQL querying of S3 data—multiple users can work collaboratively.
+
+No need to manually share files between team members.
+
+API (Alpha Vantage)
+       |
+   main.py
+       v
+   IBM_daily.json
+       v
+convert_to_csv.py
+       v
+IBM_daily.csv
+       v
+upload_to_s3.py
+       v
+[S3: kini-stock-etl-bucket/stock_data/]
+       v
+AWS Glue Crawler
+       v
+[Glue Table: etl_IBM_daily, DB: kini_data_demo]
+       v
+Athena
+       ^
+   SQL Queries
+
+
+
