@@ -103,27 +103,6 @@ Serverless SQL querying of S3 data—multiple users can work collaboratively.
 
 No need to manually share files between team members.
 
-API (Alpha Vantage)
-       |
-   main.py
-       v
-   IBM_daily.json
-       v
-convert_to_csv.py
-       v
-IBM_daily.csv
-       v
-upload_to_s3.py
-       v
-[S3: kini-stock-etl-bucket/stock_data/]
-       v
-AWS Glue Crawler
-       v
-[Glue Table: etl_IBM_daily, DB: kini_data_demo]
-       v
-Athena
-       ^
-   SQL Queries
-
+<pre> ```text API (Alpha Vantage) | main.py v IBM_daily.json | convert_to_csv.py v IBM_daily.csv | upload_to_s3.py v [S3: kini-stock-etl-bucket/stock_data/] | AWS Glue Crawler v [Glue Table: etl_IBM_daily, DB: kini_data_demo] | Athena ^ SQL Queries ``` </pre>
 
 
