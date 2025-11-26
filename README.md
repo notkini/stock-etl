@@ -8,12 +8,12 @@
 | README.md         | Explains project setup, file purposes, and AWS integration steps.                    |
 
 How to Run the Project
-Set up your API key:
+**Set up your API key:**
 
-Create a .env file and add:
+**Create a .env file and add:**
 ALPHAVANTAGE_API_KEY=your_key_here
 
-Install dependencies:
+**Install dependencies:**
 
 text
 pip install requests python-dotenv boto3
@@ -23,13 +23,13 @@ text
 python main.py
 Saves IBM_daily.json in data/
 
-Convert to CSV (convert_to_csv.py):
+**Convert to CSV (convert_to_csv.py):**
 
 text
 python convert_to_csv.py
 Creates IBM_daily.csv in data/
 
-Upload CSV to AWS S3 (upload_to_s3.py):
+**Upload CSV to AWS S3 (upload_to_s3.py):**
 
 Make sure you’ve run aws configure and set up your IAM user.
 
@@ -37,7 +37,7 @@ text
 python upload_to_s3.py
 Uploads CSV to your S3 bucket in stock_data/ folder.
 
-AWS Steps
+**AWS Steps**
 Instructions for S3 bucket, IAM, Glue Crawler, Athena setup (see guide above).
 
 Notes
