@@ -1,4 +1,4 @@
-| File/Folder       | Purpose                                                                              |
+| FILE/FOLDER       | PURPOSE                                                                         |
 | ----------------- | ------------------------------------------------------------------------------------ |
 | main.py           | Fetches daily IBM stock data from Alpha Vantage API and saves as JSON indata/folder. |
 | convert_to_csv.py | Converts the raw JSON file into a clean CSV file for analysis.                       |
