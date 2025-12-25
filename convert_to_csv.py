@@ -1,6 +1,9 @@
 import json
 import csv
 
+
+
+
 # Read the raw json file you saved earlier
 with open('data/IBM_daily.json') as f:
     data = json.load(f)
