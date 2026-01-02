@@ -10,6 +10,9 @@
 | .env              | Stores your (private!) Alpha Vantage API key.Not committed to GitHub.                |
 | README.md         | Explains project setup, file purposes, and AWS integration steps.                    |
 
+
+
+
 How to Run the Project
 **Set up your API key:**
 
